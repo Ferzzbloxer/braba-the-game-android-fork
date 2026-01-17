@@ -13,7 +13,6 @@
 
 // ideia: cadeira;
 
-
 -> update 0.0.7:
 // QoL update
 - clicar fora fecha a tela ✅

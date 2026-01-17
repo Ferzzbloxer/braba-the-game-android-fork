@@ -39,7 +39,7 @@
         "costFactor": 1.2,
         "minScore": 800,
         "tier": 1,
-        "description": "O tijolo nada mais é que o cúmulo da alvenaria humana. A base da civilização. Uma materialização viva da engenhosidade que sustenta a raça humana desde os primórdios. Mas, acho que você tem outros planos...<br> <span>Ao ficar mais de 5 segundos sem clicar, arremesse um tijolo e ganhe +100% <marker>(+100% por nível)</marker> de B$ no próximo clique.</span><br>ESSE ITEM RECEBERÁ UM REWORK EM BREVE!",
+        "description": "O tijolo nada mais é que o cúmulo da alvenaria humana. A base da civilização. Uma materialização viva da engenhosidade que sustenta a raça humana desde os primórdios. Mas, acho que você tem outros planos...<br> <span>Ao ficar mais de 5 segundos sem clicar, arremesse um tijolo e ganhe +100% <marker>(+100% por nível)</marker> de B$ no próximo clique.</span>",
         "image": "assets/img/item/tijolo.png",
         "appliesOnlyStats": "false"
     },

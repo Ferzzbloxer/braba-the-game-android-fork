@@ -158,73 +158,68 @@ export const effects = {
     const bonus = player.bonuses.tijolo;
     bonus.multiplier = player.items[item.id] + 1;
 
+    bonus.timeNoClick = 0 // prevent stacking on instance reset
+
     drawProgressBar({
       id: "tijolo-timer",
       icon: "assets/img/item/tijolo.png",
       color: "#ff9100ff",
-      current: 5,
-      max: 0,
+      current: 0,
+      max: 5,
       label: "timer"
     })
+
+    removeStatusEffect("Tijolado")
+    addTijoloEffect()
 
     function addTijoloEffect() {
       addStatusEffect(item, {
         name: "Tijolado",
         image: "assets/img/item/tijolo.png",
-        description: `Você está armado até os dentes. Colocar em bolsa, arremessar... qualquer coisa.<br><span>+${player.items[item.id] + 1}x mais B$ no próximo clique</span>`,
+        description: `Você está armado até os dentes. Colocar em bolsa, arremessar... qualquer coisa.<br><span>+${bonus.multiplier}x mais B$ no próximo clique</span>`,
         duration: 0,
-        onStart: () => { },
-        onEnd: () => { }
+        onStart: () => {},
+        onEnd: () => {}
       }, false);
     }
-    removeStatusEffect("Tijolado");
-    addTijoloEffect();
-
-    function createTijoloController() {
-      const tijoloController = {}
-      tijoloController.count = 0;
-
-      function addCount() {
-        if (tijoloController.count < 5) {tijoloController.count++}
-      }
-      tijoloController = addCount;
-
-      function resetCount() {
-        tijoloController.count = 0;
-      }
-      tijoloController = resetCount;
-
-      return tijoloController;
+    
+    function startCooldown() {
+      update();
+      bonus.timer = setInterval(() => {
+        bonus.timeNoClick++;
+        update();
+      }, 1000)
     }
-    const tijoloController = createTijoloController();
 
-    function handleBarUpdates() {
-      if (bonus.isActive) return;
+    function stopCooldown() {
+      return clearInterval(bonus.timer);
+    }
+    
+    function resetCooldown() {
+      bonus.timeNoClick = 0;
+      stopCooldown();
+      startCooldown();
+    }
 
-      if (time > 5) {
-        updateProgressBar('tijolo-timer', {
-          current: time,
-          max: 5,
-          color: "#ff9100ff",
-          label: "timer"
-        })
-      } else {
-        bonus.isActive = true;
+    function update() {
+      updateProgressBar("tijolo-timer", {
+        current: 5 - bonus.timeNoClick,
+        max: (bonus.delay / 1000),
+        color: "#ff9100ff",
+        label: "timer"
+      })
+
+      // check if time has passed
+      if (bonus.timeNoClick >= (bonus.delay / 1000)) {
         addTijoloEffect();
+        stopCooldown();
       }
     }
-
-    let bonusControl;
-    clearInterval(bonus.timer);
-    bonus.timer = setInterval(() => {
-      bonusControl++;
-      handleBarUpdates();
-    }, 1000);
-
+    
     function handleTijoloClicks() {
       if (hasStatusEffect("Tijolado")) {
+        resetCooldown();
         removeStatusEffect("Tijolado");
-        bonusControl = 0;
       }
     }
 

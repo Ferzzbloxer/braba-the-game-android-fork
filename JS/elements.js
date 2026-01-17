@@ -524,7 +524,9 @@ export function updateProgressBar(id, { current, max, color, label }) {
 
   fill.style.backgroundColor = color;
 
-  if (text && (label || typeof current === "number")) {
+  if (label === "timer") {
+    text.innerHTML = `${current}s`
+  } else if (text && (label || typeof current === "number")) {
     text.innerHTML = label ? `${label}: ${current} / ${max}` : `${current} / ${max}`;
   }
 }
