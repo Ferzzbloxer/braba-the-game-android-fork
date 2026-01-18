@@ -98,7 +98,7 @@ export const effects = {
 
     const bonus = player.bonuses.cadeira;
     const count = player.items[item.id];
-    bonus.stepBonus = count >= 5 ? 5 : count;
+    bonus.stepBonus = count
     bonus.maxBonus = player.items[item.id] * 20;
 
     function addCadeiraEffect() {
@@ -210,6 +210,7 @@ export const effects = {
       })
 
       // check if time has passed
+      // eu não consigo decidir se eu uso inglês ou português pra isso
       if (bonus.timeNoClick >= (bonus.delay / 1000)) {
         addTijoloEffect();
         stopCooldown();
@@ -332,7 +333,7 @@ export const settingEffects = {
   darkMode: (value) => {
     toggleDarkMode();
     const tooltip = document.querySelector('.tooltip');
-    if (tooltip && value == true) {
+    if (tooltip && value === true) {
       tooltip.style.backgroundColor = `#252525`;
     } else {
       tooltip.style.backgroundColor = `#c0c0c0`;
@@ -340,7 +341,7 @@ export const settingEffects = {
   },
   showChangelog: (value) => {
     const changelogButton = document.getElementById('changelog-button');
-    if (value == true) {
+    if (value) {
       changelogButton.classList.remove('hide');
     } else {
       changelogButton.classList.add('hide');

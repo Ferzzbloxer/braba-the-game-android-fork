@@ -28,8 +28,8 @@ export function applyPlayerData() {
     if (!itemObject) continue;
 
     const itemEffect = effects[itemObject.id + "Effect"];
-    if (itemObject.appliesOnlyStats == 'false') {
-      itemEffect(player, itemObject);
+    if (itemObject.appliesOnlyStats == 'false') { // tá aqui pra previnir itens que só somam (e.g. Inspo) de
+      itemEffect(player, itemObject);             // incrementarem diversas vezes
     }
 
     itemObject.cost = Math.floor(itemObject.baseCost * Math.pow(itemObject.costFactor, itemCount));
@@ -44,8 +44,8 @@ export function applyPlayerData() {
   // settings
   if (player.settings) {
     for (const [settingName, value] of Object.entries(player.settings)) {
-      const settingObject = settings.find(i => i.name === settingName)
-      if (!settingObject) continue;
+      const settingObject = settings.find(i => i.name === settingName) // itera sobre as settings e chama elas
+      if (!settingObject) continue;                                    // passando o valor armazenado no player
 
       if (settingObject.buttonElement.type === "checkbox") {
         settingObject.buttonElement.checked = value === true || value === "true";
@@ -57,7 +57,8 @@ export function applyPlayerData() {
       } else if (settingObject.buttonElement.type === "text") {
         settingObject.buttonElement.value = value;
       } else if (settingObject.buttonElement.tagName === "BUTTON") {
-        settingObject.buttonElement.innerHTML = value;
+        settingObject.buttonElement.innerText = "Apagar"; // só tá aqui por ser o único botão das settings, eu 
+        return "stop rn!"                                 // espero
       }
 
       const applySetting = settingEffects[settingName];

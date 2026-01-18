@@ -307,7 +307,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 0;
+  z-index: 1;
 }
 
 .gui-title {
@@ -986,4 +986,78 @@ body {
 
   background-color: #7c0000;
   border: #5a0000 solid 2px;
+}
+
+
+
+@media (max-width: 450px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* shop */
+  .shop-main-gui {
+    width: 95%;
+    min-height: 90% !important;
+  }
+
+  .item {
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item > * {
+    position: inherit;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .item > .item-cost {
+    width: fit-content;
+    height: fit-content;
+    align-self: flex-end;
+  }
+
+  .item > .item-description {
+    height: fit-content;
+    width: 95%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .item > .item-buy-button {
+    align-self: flex-end;
+  }
+
+  /* settings */
+  .settings-main-gui {
+    width: 90%;
+
+    position: absolute;
+    
+  }
+
+  .setting-div {
+    min-height: 130px;
+  }
+
+  .setting-div p {
+    width: 50%;
+  }
+
+  .setting-div input {
+    top: 50%;
+    right: 8px
+  }
+
+  /* changelog */
+  #changelog {
+    width: 90%;
+    font-size: 22px;
+  }
 }

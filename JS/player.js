@@ -38,7 +38,7 @@ export function getPlayer() {
 
 // other util functions
 export function log(query) {
-  return console.log(query); // só pra escrever menos
+  return console.log(query);
 }
 export function hide(element) {
   return element.classList.add('hide');

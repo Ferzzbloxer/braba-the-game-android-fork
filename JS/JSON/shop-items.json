@@ -17,7 +17,7 @@
         "costFactor": 1.1,
         "minScore": 65,
         "tier": 0,
-        "description": "'Hã? Você precisa da minha borracha emprestado? Ah, toma. Só me devolve, tá?' <span>A cada 10 cliques, ganhe +2 <marker>(+2 por nível)</marker> B$</span>",
+        "description": "'É sério mano, passa aqui na boca ó, fica mais fácil de apertar-' <span>A cada 10 cliques, ganhe +2 <marker>(+2 por nível)</marker> B$</span>",
         "image": "assets/img/item/borracha.png",
         "appliesOnlyStats": "false"
     },
@@ -46,11 +46,11 @@
     {
         "id": "cadeira",
         "name": "Cadeira",
-        "cost": 1500,
-        "costFactor": 1.2,
-        "minScore": 800,
+        "cost": 1700,
+        "costFactor": 1.18,
+        "minScore": 900,
         "tier": 1,
-        "description": "I am the storm that is approaching... Provoking...<br><span>Ao ficar mais de 5 segundos sem clicar, ganhe +1 <marker>(+1 por nível, limite 5)</marker> B$ por segundo para cada segundo sem clicar, até um limite de 20 <marker>(+20 por nível)</marker>",
+        "description": "Alguns diriam que ela é a tempestade que se aproxima, provocante.<br><span>Ao ficar mais de 5 segundos sem clicar, ganhe +1 <marker>(+1 por nível)</marker> B$ por segundo para cada segundo sem clicar, até um limite de 20 <marker>(+20 por nível)</marker>",
         "image": "assets/img/item/cadeira.png",
         "appliesOnlyStats": "false"
     },
@@ -61,7 +61,7 @@
         "costFactor": 1.1,
         "minScore": 1400,
         "tier": 0,
-        "description": "'O pré-treino é o melhor amigo do homem', disse você depois de tomar um de madrugada ao invés de creatina. <span>Ganhe +1 B$ <marker>(+1 por nível)</marker> por clique, mas, após cada compra nova, espere 30 <marker>(-1 por nível)</marker> segundos para o efeito bater.",
+        "description": "'O pré-treino é o melhor amigo do homem', dizem depois de tomar um de madrugada ao invés de creatina. <span>Ganhe +1 B$ <marker>(+1 por nível)</marker> por clique, mas, após cada compra nova, espere 30 <marker>(-1 por nível)</marker> segundos para o efeito bater.",
         "image": "assets/img/item/pretreino.png",
         "appliesOnlyStats": "true"
     },

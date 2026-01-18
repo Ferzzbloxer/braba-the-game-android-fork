@@ -69,7 +69,7 @@ export function devModeInfo() {
   const closeButton = document.querySelector('#dev-mode-details > #close-button');
 
   closeButton.addEventListener('click', () => info.classList.add('hide'))
-  button.addEventListener('click', () => info.classList.remove('hide'))
+  button.addEventListener('click', () => {info.classList.remove('hide'); log(info)})
 }
 
 const unlockableButtons = [
@@ -149,12 +149,17 @@ unlockableButtons[0].element.addEventListener('click', () => {
   }
 })
 
-function closeAllGUIs() {
+export function closeAllGUIs() {
   if (isShopOpen) {
     unlockableButtons[0].element.click();
   }
   if (isSettingsOpen) {
     unlockableButtons[1].element.click();
+  }
+
+  // changelog too
+  if (isChangelogOpen) {
+    changelogButton.click()
   }
 }
 const backdropToClose = document.querySelector('.backdrop-closeable');
@@ -167,6 +172,7 @@ changelogButton.addEventListener('click', () => {
   const changelogGui = document.querySelector('#changelog');
 
   changelogGui.classList.toggle('hide');
+  backdropToClose.classList.toggle('hide')
   isChangelogOpen = !isChangelogOpen;
 })
 
@@ -436,7 +442,7 @@ export function appendSetting(setting) {
     throw new Error(`${setting.name} has invalid type (${setting.type})`);
   }
 
-  setting.buttonElement = (setting.type === "button") ? button : settingButton; // odeio ternário mano
+  setting.buttonElement = (setting.type === "button") ? button : settingButton;
 }
 
 export function openDataDeletionScreen() {

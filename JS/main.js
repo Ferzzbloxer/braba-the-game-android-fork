@@ -1,5 +1,5 @@
 import { hide, player, show } from "./player.js";
-import { appendSetting, appendShopItem, createScorePopup, createSetting, createShopItem, devModeSetScore, unlockGuiButtons } from './elements.js';
+import { appendSetting, appendShopItem, createScorePopup, createSetting, createShopItem, devModeInfo, devModeSetScore, unlockGuiButtons } from './elements.js';
 import { changeScore, addScoreObserver, addStatusEffect, abbreviateNumber, removeStatusEffect, hasStatusEffect } from './currency.js';
 import { applyPlayerData, loadPlayerData, savePlayerData } from './storage.js';
 
@@ -215,4 +215,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   applyPlayerData();
   unlockGuiButtons();
   setTimeout(() => { changeScore('add', 0)}, 50);
+  devModeInfo()
 });
