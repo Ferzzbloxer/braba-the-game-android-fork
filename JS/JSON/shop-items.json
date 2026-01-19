@@ -39,7 +39,7 @@
         "costFactor": 1.2,
         "minScore": 800,
         "tier": 1,
-        "description": "O tijolo nada mais é que o cúmulo da alvenaria humana. A base da civilização. Uma materialização viva da engenhosidade que sustenta a raça humana desde os primórdios. Mas, acho que você tem outros planos...<br> <span>Ao ficar mais de 5 segundos sem clicar, arremesse um tijolo e ganhe +100% <marker>(+100% por nível)</marker> de B$ no próximo clique.</span>",
+        "description": "O tijolo nada mais é que o cúmulo da alvenaria humana. A base da civilização. Uma materialização viva da engenhosidade que sustenta a raça humana desde os primórdios. Mas, acho que você tem outros planos...<br> <span>Ao ficar mais de 5 segundos sem clicar, arremesse um tijolo e ganhe +100% <marker>(+100% por nível)</marker> de B$ no próximo clique</span>",
         "image": "assets/img/item/tijolo.png",
         "appliesOnlyStats": "false"
     },
@@ -61,7 +61,7 @@
         "costFactor": 1.1,
         "minScore": 1400,
         "tier": 0,
-        "description": "'O pré-treino é o melhor amigo do homem', dizem depois de tomar um de madrugada ao invés de creatina. <span>Ganhe +1 B$ <marker>(+1 por nível)</marker> por clique, mas, após cada compra nova, espere 30 <marker>(-1 por nível)</marker> segundos para o efeito bater.",
+        "description": "'O pré-treino é o melhor amigo do homem', dizem depois de tomar um de madrugada ao invés de creatina. <span>Ganhe +1 B$ <marker>(+1 por nível)</marker> por clique, mas, após cada compra nova, espere 30 <marker>(-1 por nível)</marker> segundos para o efeito bater",
         "image": "assets/img/item/pretreino.png",
         "appliesOnlyStats": "true"
     },
@@ -72,7 +72,7 @@
         "costFactor": 1.18,
         "minScore": 3000,
         "tier": 1,
-        "description": "'O que tu tá estudando?'<br>'Brabonomia.'<span>Todas as brabas ganhas são também armazenadas na carteira. Ao atingir 500 <marker>(+10 por nível)</marker>, ganhe +5% <marker>(+5% por nível)</marker> de B$ sobre o valor armazenado, além do valor original.",
+        "description": "'O que tu tá estudando?'<br>'Brabonomia.'<span>Todo B$ ganho é também armazenado na carteira. Ao atingir 500 <marker>(+10 por nível)</marker>, ganhe +5% <marker>(+5% por nível)</marker> de B$ sobre o valor armazenado, além do valor original",
         "image": "assets/img/item/carteira.png",
         "appliesOnlyStats": "false"
     }

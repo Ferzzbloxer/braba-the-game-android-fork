@@ -781,6 +781,10 @@ body {
 .changelog-article ul {
   list-style-type: circle;
   list-style-position: inside;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .changelog-article p {
