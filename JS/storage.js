@@ -92,6 +92,6 @@ export function resetPlayerData() {
   Object.assign(player, defaultPlayer);
   changeScore("add", 0);
   setTimeout(() => {
-    location.reload();
+    location.reload(); // cúmulo da preqguiça...
   }, 500);
 }

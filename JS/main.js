@@ -217,3 +217,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   setTimeout(() => { changeScore('add', 0)}, 50);
   devModeInfo()
 });
+
+export function isMobile() {
+  return window.matchMedia("(max-width: 450px)").matches // true se for mobile
+}
+

@@ -1,5 +1,6 @@
 import { abbreviateNumber, addScoreObserver, buyItem, changeScore, formatTime } from './currency.js';
 import { effects, itemTooltipInfo, scoreObservers, settingEffects } from './data.js';
+import { isMobile } from './main.js';
 import { hide, log, player } from "./player.js";
 import { resetPlayerData } from './storage.js';
 
@@ -324,7 +325,11 @@ export function addHoverTooltip(type, element, title, description, effectEndTime
 
   
   element.addEventListener('mousemove', (event) => {
-    tooltip.style.left = `${event.clientX + 15}px`;
+    if (!isMobile()) {
+      tooltip.style.left = `${event.clientX + 15}px`;
+    } else {
+      tooltip.style.left = `${event.clientX - tooltip.clientWidth / 2}px`;
+    }
     tooltip.style.top = `${(event.clientY - tooltip.clientHeight) - 10}px`;
   });
 

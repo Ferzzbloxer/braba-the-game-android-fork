@@ -1020,7 +1020,6 @@ body {
   .item > .item-cost {
     width: fit-content;
     height: fit-content;
-    align-self: flex-end;
   }
 
   .item > .item-description {
@@ -1030,14 +1029,9 @@ body {
     margin-bottom: 10px;
   }
 
-  .item > .item-buy-button {
-    align-self: flex-end;
-  }
-
   /* settings */
   .settings-main-gui {
     width: 90%;
-
     position: absolute;
     
   }
@@ -1059,5 +1053,20 @@ body {
   #changelog {
     width: 90%;
     font-size: 22px;
+  }
+
+  /* outros */
+  #progress-bars-wrapper {
+    width: 70%;
+    max-height: none;
+
+    position: absolute;
+    left: 0;
+    margin: auto;
+
+    top: calc(50% + 70px);
+    left: 50%;
+    transform: translateY(calc(15% * var(--scale-override)));
+    transform: translateX(-50%);
   }
 }
