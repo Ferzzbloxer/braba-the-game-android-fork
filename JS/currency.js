@@ -1,5 +1,5 @@
 import { effects, scoreObservers } from './data.js';
-import { addHoverTooltip } from "./elements.js";
+import { addHoverTooltip, broadcast } from "./elements.js";
 import { player } from "./player.js";
 
 export function addScoreObserver(observerFn) {
@@ -68,6 +68,12 @@ export function buyItem(item, player) {
 
   changeScore('remove', item.cost);
   adjustPrice(item);
+  broadcast({
+    text: "Comprado!",
+    color: "green",
+    position: "topRight",
+    size: 25
+  })
 
   
   const effectFn = effects[item.id + "Effect"];
@@ -95,9 +101,9 @@ export function abbreviateNumber(number) {
   if (!player.settings.abbreviateNumbers) { return number.toString(); }
   if (number < 1000) { return number.toString(); }
 
-  const suffixes = ['', "k", "M", "B", "T", "Q", "Qui", "Sx"];
+  const suffixes = ['', "k", "M", "B", "T", "Q", "Qui", " Sextilhão de", " Septilhão de", " Octilhão de", " Nonilhão de", " Decilhão de"];
   let numberScale = Math.floor(Math.log10(number) / 3);
-  const suffix = suffixes[numberScale] || "";
+  const suffix = suffixes[numberScale] || " Zinquaglimpletilhão de";
 
   let power = number / Math.pow(1000, numberScale);
   const treatedNumber = parseFloat(power.toFixed(2)).toString();
@@ -186,3 +192,5 @@ setInterval(() => {
     }
   }
 }, 100);
+
+// lógica de desbloqueios (skins)

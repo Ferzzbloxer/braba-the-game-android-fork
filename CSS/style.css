@@ -992,7 +992,16 @@ body {
   border: #5a0000 solid 2px;
 }
 
+.broadcast {
+  max-width: 80%;
+  height: fit-content;
+  
+  z-index: -9;
 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  user-select: none;
+}
 
 @media (max-width: 450px) {
   body {

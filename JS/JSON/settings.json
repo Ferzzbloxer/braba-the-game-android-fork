@@ -54,6 +54,15 @@
         "description": "Usa uma fonte alternativa para o número de brabas"
     },
     {
+        "name": "showTips",
+        "title": "Mostrar Dicas",
+        "type": "checkbox",
+        "defaultValue": "true",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Exibir dicas que às vezes aparecem durante a jogatina"
+    },
+    {
         "name": "showPopups",
         "title": "Mostrar Popups",
         "type": "checkbox",

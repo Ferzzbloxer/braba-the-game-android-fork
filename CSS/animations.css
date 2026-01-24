@@ -77,6 +77,11 @@
     }
 }
 
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
 .dark-mode {
     background-color: rgb(32, 32, 32) !important;
     color: white !important;

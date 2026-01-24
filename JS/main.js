@@ -155,10 +155,10 @@ function devModeTools(event) {
       image: "assets/img/item/test.png",
       description: "tem um macaco na minha tela<br><span>+macaco na tela</span>",
       duration: 10000,
-      onStart: (player, item) => {
+      onStart: () => {
         console.log("oi");
       },
-      onEnd: (player, item) => {
+      onEnd: () => {
         console.log("macaco sumiu");
       },
     },
@@ -222,3 +222,6 @@ export function isMobile() {
   return window.matchMedia("(max-width: 450px)").matches // true se for mobile
 }
 
+export function sample(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}

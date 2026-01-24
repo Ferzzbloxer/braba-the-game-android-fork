@@ -1,6 +1,6 @@
 import { abbreviateNumber, addScoreObserver, buyItem, changeScore, formatTime } from './currency.js';
 import { effects, itemTooltipInfo, scoreObservers, settingEffects } from './data.js';
-import { isMobile } from './main.js';
+import { isMobile, sample } from './main.js';
 import { hide, log, player } from "./player.js";
 import { resetPlayerData } from './storage.js';
 
@@ -253,9 +253,26 @@ export function appendShopItem(item) {
   )
 };
 
+const tips = ["Já tentou usar o tijolo e a borracha no mesmo clique?", "Itens novos surgem quando sua quantidade de brabas atinge um certo ponto", "Você pode clicar no botão e apertar Espaço para clicar", "É possível saber se modo Dev foi usado ou não", "Inspiração possui a menor curva de preço", "Cadeira e Carteira formam uma ótima sinergia", "O bônus do microfone desaparece após exatamente 1.5s", "Esse jogo foi criado apenas com JS base!", "Esse jogo ainda está em desenvolvimento!", "Você pode clicar com o botão direito no botão para algo surpreendente", "Paciência muitas vezes é a chave", "O Tijolo é capaz de multiplicar o bônus da Borracha também"]
+function showRandomTip() {
+  
+  if (player.settings?.showTips && Math.random() < 0.2) {
+    broadcast({
+      text: sample(tips),
+      color: "gray",
+      duration: 5,
+      position: "bottom",
+      size: 20
+    })
+  }
+}
+
+setInterval(showRandomTip, 30000)
+showRandomTip();
+
 function revealItemsWithMinScore() {
   shopItems.forEach(item => {
-    if (player.score >= item.minScore && item.element.classList.contains('hide')) {
+    if ((player.score >= item.minScore && item.element.classList.contains('hide'))) {
       item.element.classList.remove('hide');
     }
   })
@@ -584,3 +601,97 @@ setTimeout(() => {
   addScoreObserver(updateBuyButtonColor);
   addScoreObserver(unlockGuiButtons);
 }, 1);
+
+// sistema rudimentar de broadcast
+
+export function broadcast(message) {
+  const broadcast = document.createElement('span');
+  document.body.appendChild(broadcast)
+
+  const text = message.text ?? ["Uma brisa leve bate lá fora.", "Parece que não há algo aqui.", "Apesar de tudo, você esqueceu dessa linha.", "Você esqueceu de definir o texto.", "Apesar de tudo, ainda é você.", "Undefined...", "Tudo o que você precisava fazer.", "Os lugares para estar."][Math.floor(Math.random() * 8)]; // saborzinho. não serve pra nada de mais, mas eu gosto de placeholders bonitinhos
+  const color = message.color ?? "#000000";
+  const size = message.size ?? 10
+  const duration = message.duration ?? 1;
+  const position = message.position ?? "default";
+
+  broadcast.innerText = text;
+  broadcast.classList.add('broadcast');
+
+  broadcast.style.color = color;
+
+  broadcast.style.fontSize = `${size}px`;
+
+  broadcast.style.animation = `fadeOut ${duration}s ease-out forwards`;
+  broadcast.addEventListener('animationend', () => broadcast.remove());
+
+  function resolvePosition(pos) {
+    if (!isMobile()) return pos;
+
+    const mobileFallbacks = {
+      leftOfButton: 'bottom',
+      topRight: 'top',
+      topLeft: 'top'
+    }
+    
+    return mobileFallbacks[pos] ?? pos;
+  }
+
+  switch (resolvePosition(position)) {
+    case "top":
+      broadcast.style.position = "fixed";
+      broadcast.style.top = "90px";
+    break;
+
+    case "leftOfButton":
+      broadcast.style.position = "fixed";
+      broadcast.style.right = "calc(50% + (var(--scale-override) * 55px))";
+      broadcast.style.textAlign = "right";
+    break;
+    
+    case "bottom":
+      broadcast.style.position = "fixed";
+      broadcast.style.bottom = "100px";
+    break;
+
+    case "topLeft":
+      broadcast.style.position = "fixed";
+      broadcast.style.top = "0"
+      broadcast.style.left = "0"
+
+      broadcast.style.maxWidth = "40%"
+      broadcast.style.textAlign = "left"
+
+      broadcast.style.margin = "5px"
+    break;
+
+    case "topRight": 
+    broadcast.style.position = "fixed";
+      broadcast.style.top = "0"
+      broadcast.style.right = "0"
+
+      broadcast.style.maxWidth = "40%"
+      broadcast.style.textAlign = "right"
+
+      broadcast.style.margin = "5px"
+  }
+}
+
+
+// troca de aparência dos botões
+const button = document.getElementById('main-button');
+
+function onButtonRightClick(event) {
+  event.preventDefault();
+
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
+  if (!player.unlocks.buttons) player.unlocks.buttons = {};
+  const ownedSkins = player.unlocks.buttons;
+  if (isEmpty(ownedSkins)) {
+    return 0;
+  }
+}
+
+button.addEventListener('contextmenu', onButtonRightClick);
