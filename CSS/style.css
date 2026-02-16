@@ -1003,6 +1003,18 @@ body {
   user-select: none;
 }
 
+#button-skin-select {
+  width: 200px;
+  height: 200px;
+
+  border: #7e7e7e solid 3px;
+  background-color: #999999;
+
+  border-radius: 0 7px 7px 7px;
+
+  z-index: 9999;
+}
+
 @media (max-width: 450px) {
   body {
     width: 100vw;

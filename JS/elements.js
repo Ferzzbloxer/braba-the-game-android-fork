@@ -151,6 +151,7 @@ unlockableButtons[0].element.addEventListener('click', () => {
 })
 
 export function closeAllGUIs() {
+  backdropToClose.classList.add('hide');
   if (isShopOpen) {
     unlockableButtons[0].element.click();
   }
@@ -161,6 +162,12 @@ export function closeAllGUIs() {
   // changelog too
   if (isChangelogOpen) {
     changelogButton.click()
+  }
+
+  // skin menu as well
+  const selectMenu = document.getElementById('button-skin-select');
+  if (!selectMenu.classList.contains('hide')) {
+    selectMenu.classList.add('hide');
   }
 }
 const backdropToClose = document.querySelector('.backdrop-closeable');
@@ -255,7 +262,6 @@ export function appendShopItem(item) {
 
 const tips = ["Já tentou usar o tijolo e a borracha no mesmo clique?", "Itens novos surgem quando sua quantidade de brabas atinge um certo ponto", "Você pode clicar no botão e apertar Espaço para clicar", "É possível saber se modo Dev foi usado ou não", "Inspiração possui a menor curva de preço", "Cadeira e Carteira formam uma ótima sinergia", "O bônus do microfone desaparece após exatamente 1.5s", "Esse jogo foi criado apenas com JS base!", "Esse jogo ainda está em desenvolvimento!", "Você pode clicar com o botão direito no botão para algo surpreendente", "Paciência muitas vezes é a chave", "O Tijolo é capaz de multiplicar o bônus da Borracha também"]
 function showRandomTip() {
-  
   if (player.settings?.showTips && Math.random() < 0.2) {
     broadcast({
       text: sample(tips),
@@ -267,8 +273,7 @@ function showRandomTip() {
   }
 }
 
-setInterval(showRandomTip, 30000)
-showRandomTip();
+setInterval(showRandomTip, 30000);
 
 function revealItemsWithMinScore() {
   shopItems.forEach(item => {
@@ -689,9 +694,18 @@ function onButtonRightClick(event) {
 
   if (!player.unlocks.buttons) player.unlocks.buttons = {};
   const ownedSkins = player.unlocks.buttons;
-  if (isEmpty(ownedSkins)) {
-    return 0;
-  }
+
+
+  const selectMenu = document.getElementById('button-skin-select');
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+
+  selectMenu.style.position = 'absolute';
+  selectMenu.style.left = `${mouseX + 10}px`;
+  selectMenu.style.top = `${mouseY + 10}px`;
+
+  selectMenu.classList.remove('hide');
+  backdropToClose.classList.remove('hide');
 }
 
 button.addEventListener('contextmenu', onButtonRightClick);
