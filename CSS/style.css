@@ -83,14 +83,21 @@ body {
   background-color: hsl(0, 0%, 60%);
 }
 
+#dev-mode-panel > #title {
+  margin: 10px;
+
+  font-family: 'Trebuchet MS';
+  font-weight: bold;
+}
+
 #dev-mode-panel > #content {
   width: 80%;
   height: 80%;
 
   border: 1px solid red;
 
-  display: grid;
-  grid-template-columns: 0.5fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #dev-mode-details > #close-button {

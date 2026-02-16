@@ -65,12 +65,25 @@ export function createScorePopup(value, type) {
 }
 
 export function devModeInfo() {
-  const button = document.getElementById('dev-mode-info');
-  const info = document.getElementById('dev-mode-details');
-  const closeButton = document.querySelector('#dev-mode-details > #close-button');
+  if (isMobile()) {
+    const dock = document.querySelector('#dev-mode-panel');
+    const button = document.querySelector('#dev-mode-info');
 
-  closeButton.addEventListener('click', () => info.classList.add('hide'))
-  button.addEventListener('click', () => {info.classList.remove('hide'); log(info)})
+    button.addEventListener('click', () => {
+      toggleWithAnimation(dock, 'shopGuiOpen', '1.5s');
+    });
+  } else {
+    const button = document.getElementById("dev-mode-info");
+    const info = document.getElementById("dev-mode-details");
+    const closeButton = document.querySelector(
+      "#dev-mode-details > #close-button",
+    );
+
+    closeButton.addEventListener("click", () => info.classList.add("hide"));
+    button.addEventListener("click", () => {
+      info.classList.remove("hide");
+    });
+  }
 }
 
 const unlockableButtons = [
@@ -90,18 +103,28 @@ export function unlockGuiButtons() {
  * Helper function that applies animation and hide-show logic depending on the element's state, using a predefined CSS animation.
  * @param {node} element - Element to apply
  * @param {string} animation - CSS Animation
+ * @param {string} duration - Animation duration
  */
-export function toggleWithAnimation(element, animation) {
+export function toggleWithAnimation(element, animation, duration = '1s') {
+  if (element.dataset.animating === 'true') return console.log("nah, i'd animate");
+
   const isHidden = element.classList.contains('hide');
+  element.dataset.animating = 'true';
 
   if (isHidden) {
     element.classList.remove('hide');
-    element.style.animation = `${animation} forwards`;
+    forceReflow(element);
+    element.style.animation = `${animation} ${duration} ease forwards`;
+    element.addEventListener('animationend', () => {
+      element.dataset.animating = 'false';
+    }, { once: true });
   } else {
-    element.style.animation = `${animation} reverse`;
+    forceReflow(element);
+    element.style.animation = `${animation} ${duration} ease reverse`;
     element.addEventListener('animationend', () => {
       element.classList.add('hide');
-    }, {once: true});
+      element.dataset.animating = 'false';
+    }, { once: true });
   }
 }
 

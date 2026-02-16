@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadPlayerData();
   applyPlayerData();
   unlockGuiButtons();
-  setTimeout(() => { changeScore('add', 0)}, 50);
+  setTimeout(() => { changeScore('add', 0)}, 0);
   devModeInfo()
 });
 
