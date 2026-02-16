@@ -141,7 +141,7 @@ async function loadGameData() {
   }
 }
 
-function devModeTools(event) {
+export function devModeTools(event) {
   if (event.key == "p") {
     changeScore("add", 100);
   } else if (event.key === "o" || event.key === "O") {

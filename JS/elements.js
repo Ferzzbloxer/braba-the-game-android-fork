@@ -1,6 +1,6 @@
 import { abbreviateNumber, addScoreObserver, buyItem, changeScore, formatTime } from './currency.js';
 import { effects, itemTooltipInfo, scoreObservers, settingEffects } from './data.js';
-import { isMobile, sample } from './main.js';
+import { devModeTools, isMobile, sample } from './main.js';
 import { hide, log, player } from "./player.js";
 import { resetPlayerData } from './storage.js';
 
@@ -89,6 +89,28 @@ export function devModeInfo() {
       info.classList.remove("hide");
     });
   }
+}
+
+function addAllDevPanelCommands() {
+  addDevPanelCommand('+100 Brabas', () => {devModeTools({key: "p"})});
+  addDevPanelCommand('+1 BpS', () => {devModeTools({key: "o"})});
+  addDevPanelCommand('Resetar Brabas', () => {devModeTools({key: "l"})});
+  addDevPanelCommand('Testar Status Effect', () => {devModeTools({key: "["})});
+  addDevPanelCommand('Definir Brabas', () => {devModeTools({key: "i"})});
+  addDevPanelCommand('<i>Em breve...</i>', () => {console.log('foo')});
+}
+addAllDevPanelCommands();
+
+function addDevPanelCommand(name, callback) {
+  const dock = document.querySelector('#dev-mode-panel > #content');
+
+  const newButton = document.createElement('button');
+  dock.appendChild(newButton);
+  newButton.classList.add('dev-panel-button');
+  
+  if (name) newButton.innerHTML = name;
+
+  newButton.addEventListener('click', callback);
 }
 
 const unlockableButtons = [
