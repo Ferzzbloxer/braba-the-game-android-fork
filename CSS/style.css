@@ -100,14 +100,21 @@ body {
   flex-wrap: wrap;
 }
 
-#dev-mode-details > #close-button {
-  width: 20px;
-  height: 20px;
-
-  border-radius: 99px;
+#dev-mode-details > #close-button, #dev-mode-panel > #close-button {
+  background: none;
   border: none;
 
+  font-size: 25px;
+
   cursor: pointer;
+  
+  position: absolute;
+  right: 8px;
+  top: 0;
+}
+
+#dev-mode-details > #close-button:hover, #dev-mode-panel > #close-button:hover {
+  color: white;
 }
 
 .main-button-wrapper {

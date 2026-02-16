@@ -68,10 +68,15 @@ export function devModeInfo() {
   if (isMobile()) {
     const dock = document.querySelector('#dev-mode-panel');
     const button = document.querySelector('#dev-mode-info');
+    const closeButton = document.querySelector('#dev-mode-panel > #close-button');
 
-    button.addEventListener('click', () => {
+    const toggleVisibility = function() {
       toggleWithAnimation(dock, 'shopGuiOpen', '1.5s');
-    });
+    }
+
+    closeButton.addEventListener('click', toggleVisibility);
+    button.addEventListener('click', toggleVisibility);
+    
   } else {
     const button = document.getElementById("dev-mode-info");
     const info = document.getElementById("dev-mode-details");
