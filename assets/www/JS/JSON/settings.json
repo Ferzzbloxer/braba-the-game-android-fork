@@ -1,0 +1,110 @@
+[
+    {
+        "name": "buttonSfx",
+        "title": "Barulhos de Botão",
+        "type": "checkbox",
+        "defaultValue": "true",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Apertar o botão central emite sons"
+    },
+    {
+        "name": "buttonScale",
+        "title": "Tamanho do Botão",
+        "type": "number",
+        "defaultValue": "10",
+        "minValue": "1",
+        "maxValue": "20",
+        "description": "Tamanho aproximado do botão central"
+    },
+    {
+        "name": "buttonText",
+        "title": "Texto do Botão",
+        "type": "input",
+        "defaultValue": "braba",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Texto que deve aparecer no centro do botão"
+    },
+    {
+        "name": "darkMode",
+        "title": "Modo Escuro",
+        "type": "checkbox",
+        "defaultValue": "false",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Machuca menos os olhos"
+    },
+    {
+        "name": "abbreviateNumbers",
+        "title": "Números Abreviados",
+        "type": "checkbox",
+        "defaultValue": "true",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Números são abreviados <br> (10520 => 10.52k)"
+    },
+    {
+        "name": "monospaceFont",
+        "title": "Fonte Monospace",
+        "type": "checkbox",
+        "defaultValue": "false",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Usa uma fonte alternativa para o número de brabas"
+    },
+    {
+        "name": "showPopups",
+        "title": "Mostrar Popups",
+        "type": "checkbox",
+        "defaultValue": "true",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Exibir os popups que aparecem ao clicar o botão"
+    },
+    {
+        "name": "showChangelog",
+        "title": "Exibir Changelog",
+        "type": "checkbox",
+        "defaultValue": "true",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Mostrar o botão de Changelog"
+    },
+    {
+        "name": "currencyName",
+        "title": "Nome da Braba",
+        "type": "input",
+        "defaultValue": "brabas",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Texto que aparece ao lado de suas brabas"
+    },
+    {
+        "name": "showProgressBars",
+        "title": "Barras de Progresso",
+        "type": "checkbox",
+        "defaultValue": "true",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Mostrar as barras de progresso de itens variados"
+    },
+    {
+        "name": "devMode",
+        "title": "Modo Desenvolvedor",
+        "type": "checkbox",
+        "defaultValue": "false",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Liga o modo desenvolvedor. Use com cuidado"
+    },
+    {
+        "name": "resetData",
+        "title": "Apagar Dados",
+        "type": "button",
+        "defaultValue": "<span style='color: red;'>Apagar</span>",
+        "minValue": "",
+        "maxValue": "",
+        "description": "Redefine todos os seus dados de jogo, incluindo compras e pontuação"
+    }
+]
