@@ -86,6 +86,24 @@ export function unlockGuiButtons() {
     }
   })
 }
+/**
+ * Helper function that applies animation and hide-show logic depending on the element's state, using a predefined CSS animation.
+ * @param {node} element - Element to apply
+ * @param {string} animation - CSS Animation
+ */
+export function toggleWithAnimation(element, animation) {
+  const isHidden = element.classList.contains('hide');
+
+  if (isHidden) {
+    element.classList.remove('hide');
+    element.style.animation = `${animation} forwards`;
+  } else {
+    element.style.animation = `${animation} reverse`;
+    element.addEventListener('animationend', () => {
+      element.classList.add('hide');
+    }, {once: true});
+  }
+}
 
 function forceReflow(element) {
   element.style.animation = `none`;
