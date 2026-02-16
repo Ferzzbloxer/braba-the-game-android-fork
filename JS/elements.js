@@ -1,6 +1,6 @@
 import { abbreviateNumber, addScoreObserver, buyItem, changeScore, formatTime } from './currency.js';
 import { effects, itemTooltipInfo, scoreObservers, settingEffects } from './data.js';
-import { isMobile, sample } from './main.js';
+import { devModeTools, isMobile, sample } from './main.js';
 import { hide, log, player } from "./player.js";
 import { resetPlayerData } from './storage.js';
 
@@ -65,12 +65,52 @@ export function createScorePopup(value, type) {
 }
 
 export function devModeInfo() {
-  const button = document.getElementById('dev-mode-info');
-  const info = document.getElementById('dev-mode-details');
-  const closeButton = document.querySelector('#dev-mode-details > #close-button');
+  if (isMobile()) {
+    const dock = document.querySelector('#dev-mode-panel');
+    const button = document.querySelector('#dev-mode-info');
+    const closeButton = document.querySelector('#dev-mode-panel > #close-button');
 
-  closeButton.addEventListener('click', () => info.classList.add('hide'))
-  button.addEventListener('click', () => {info.classList.remove('hide'); log(info)})
+    const toggleVisibility = function() {
+      toggleWithAnimation(dock, 'shopGuiOpen', '1.5s');
+    }
+
+    closeButton.addEventListener('click', toggleVisibility);
+    button.addEventListener('click', toggleVisibility);
+    
+  } else {
+    const button = document.getElementById("dev-mode-info");
+    const info = document.getElementById("dev-mode-details");
+    const closeButton = document.querySelector(
+      "#dev-mode-details > #close-button",
+    );
+
+    closeButton.addEventListener("click", () => info.classList.add("hide"));
+    button.addEventListener("click", () => {
+      info.classList.remove("hide");
+    });
+  }
+}
+
+function addAllDevPanelCommands() {
+  addDevPanelCommand('+100 Brabas', () => {devModeTools({key: "p"})});
+  addDevPanelCommand('+1 BpS', () => {devModeTools({key: "o"})});
+  addDevPanelCommand('Resetar Brabas', () => {devModeTools({key: "l"})});
+  addDevPanelCommand('Testar Status Effect', () => {devModeTools({key: "["})});
+  addDevPanelCommand('Definir Brabas', () => {devModeTools({key: "i"})});
+  addDevPanelCommand('<i>Em breve...</i>', () => {console.log('foo')});
+}
+addAllDevPanelCommands();
+
+function addDevPanelCommand(name, callback) {
+  const dock = document.querySelector('#dev-mode-panel > #content');
+
+  const newButton = document.createElement('button');
+  dock.appendChild(newButton);
+  newButton.classList.add('dev-panel-button');
+  
+  if (name) newButton.innerHTML = name;
+
+  newButton.addEventListener('click', callback);
 }
 
 const unlockableButtons = [
@@ -85,6 +125,34 @@ export function unlockGuiButtons() {
       object.element.style.animation = "guiButtonPopup 1s ease-out forwards";
     }
   })
+}
+/**
+ * Helper function that applies animation and hide-show logic depending on the element's state, using a predefined CSS animation.
+ * @param {node} element - Element to apply
+ * @param {string} animation - CSS Animation
+ * @param {string} duration - Animation duration
+ */
+export function toggleWithAnimation(element, animation, duration = '1s') {
+  if (element.dataset.animating === 'true') return console.log("nah, i'd animate");
+
+  const isHidden = element.classList.contains('hide');
+  element.dataset.animating = 'true';
+
+  if (isHidden) {
+    element.classList.remove('hide');
+    forceReflow(element);
+    element.style.animation = `${animation} ${duration} ease forwards`;
+    element.addEventListener('animationend', () => {
+      element.dataset.animating = 'false';
+    }, { once: true });
+  } else {
+    forceReflow(element);
+    element.style.animation = `${animation} ${duration} ease reverse`;
+    element.addEventListener('animationend', () => {
+      element.classList.add('hide');
+      element.dataset.animating = 'false';
+    }, { once: true });
+  }
 }
 
 function forceReflow(element) {

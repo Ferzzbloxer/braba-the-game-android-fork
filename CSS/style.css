@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
 :root {
   --scale: 1;
   --scale-override: 1;
@@ -64,14 +66,77 @@ body {
   z-index: 1;
 }
 
-#dev-mode-details > #close-button {
-  width: 20px;
-  height: 20px;
+#dev-mode-panel {
+  width: 100%;
+  height: 40%;
 
-  border-radius: 99px;
+  border: hsl(0, 0%, 50%) 3px solid;
+  border-radius: 10px 10px 0 0;
+
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  background-color: hsl(0, 0%, 60%);
+}
+
+#dev-mode-panel > #title {
+  text-align: center;
+  font-family: 'Trebuchet MS';
+}
+
+#dev-mode-panel > #title > p {
+  margin: 10px 10px 0 10px;
+  font-weight: bold;
+}
+
+#dev-mode-panel > #title > sub {
+  font-weight: lighter;
+  color: hsl(0, 0%, 26%);
+  font-style: italic;
+}
+
+#dev-mode-panel > #content {
+  width: 80%;
+  height: 80%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 10px;
+}
+
+.dev-panel-button {
+  width: 100%;
+  height: 100%;
+
+  font-family: 'JetBrains Mono';
+  padding: 15px;
+
+  border-radius: 10px;
+  border: none;
+}
+
+#dev-mode-details > #close-button, #dev-mode-panel > #close-button {
+  background: none;
   border: none;
 
+  font-size: 25px;
+
   cursor: pointer;
+  
+  position: absolute;
+  right: 8px;
+  top: 0;
+}
+
+#dev-mode-details > #close-button:hover, #dev-mode-panel > #close-button:hover {
+  color: white;
 }
 
 .main-button-wrapper {
