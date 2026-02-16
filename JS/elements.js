@@ -133,7 +133,7 @@ export function unlockGuiButtons() {
  * @param {string} duration - Animation duration
  */
 export function toggleWithAnimation(element, animation, duration = '1s') {
-  if (element.dataset.animating === 'true') return console.log("nah, i'd animate");
+  if (element.dataset.animating === 'true') return;
 
   const isHidden = element.classList.contains('hide');
   element.dataset.animating = 'true';
