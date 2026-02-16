@@ -64,6 +64,35 @@ body {
   z-index: 1;
 }
 
+#dev-mode-panel {
+  width: 100%;
+  height: 40%;
+
+  border: hsl(0, 0%, 50%) 3px solid;
+  border-radius: 10px 10px 0 0;
+
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  background-color: hsl(0, 0%, 60%);
+}
+
+#dev-mode-panel > #content {
+  width: 80%;
+  height: 80%;
+
+  border: 1px solid red;
+
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+}
+
 #dev-mode-details > #close-button {
   width: 20px;
   height: 20px;

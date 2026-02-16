@@ -166,6 +166,10 @@ function devModeTools(event) {
   } else if (event.key === "i" || event.key === "I") {
     devModeSetScore();
   }
+
+  if (!player.extras.hasUsedDevMode) {
+    player.extras.hasUsedDevMode = true;
+  }
 }
 
 export function toggleDevMode() {
@@ -176,10 +180,6 @@ export function toggleDevMode() {
   } else {
     info.classList.add('hide');
     document.body.removeEventListener('keypress', devModeTools)
-  }
-
-  if (!player.extras.hasUsedDevMode) {
-    player.extras.hasUsedDevMode = true;
   }
 }
 
@@ -223,5 +223,6 @@ export function isMobile() {
 }
 
 export function sample(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random() * arr.length)]; // retorna elemento aleatório (amostra) do iterável
 }
+
