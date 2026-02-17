@@ -1,4 +1,4 @@
-[
+export const SETTINGS = [
     {
         "name": "buttonSfx",
         "title": "Barulhos de Botão",
@@ -116,4 +116,4 @@
         "maxValue": "",
         "description": "Redefine todos os seus dados de jogo, incluindo compras e pontuação"
     }
-]
+];

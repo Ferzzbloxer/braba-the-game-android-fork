@@ -3,6 +3,10 @@ import { appendSetting, appendShopItem, createScorePopup, createSetting, createS
 import { changeScore, addScoreObserver, addStatusEffect, abbreviateNumber, removeStatusEffect, hasStatusEffect } from './currency.js';
 import { applyPlayerData, loadPlayerData, savePlayerData } from './storage.js';
 
+import {SHOP_ITEMS} from "./data/shop-items.js";
+import {BUTTON_SKINS} from "./data/button-skins.js"; // still unused
+import {SETTINGS} from "./data/settings.js";
+
 window.addEventListener('beforeunload', () => {
   savePlayerData();
 })
@@ -80,23 +84,9 @@ button.addEventListener('keypress', () => {
   }
 })
 
-async function loadGameData() {
+function loadGameData() {
   try {
-    const [itemsResponse, settingsResponse] = await Promise.all([
-      fetch("JS/JSON/shop-items.json"),
-      fetch("JS/JSON/settings.json")
-    ]);
-
-    if (!itemsResponse.ok || !settingsResponse.ok) {
-      throw new Error(`Error loading JSON files (${itemsResponse.status}, ${settingsResponse.status})`);
-    }
-
-    const [rawItems, rawSettings] = await Promise.all([
-      itemsResponse.json(),
-      settingsResponse.json()
-    ]);
-
-    rawItems.forEach(rawItem => {
+    SHOP_ITEMS.forEach(rawItem => {
       const processedItem = createShopItem(
         rawItem.id,
         rawItem.name,
@@ -111,7 +101,7 @@ async function loadGameData() {
       appendShopItem(processedItem);
     });
 
-    rawSettings.forEach(rawSetting => {
+    SETTINGS.forEach(rawSetting => {
       const processedSetting = createSetting(
         rawSetting.name,
         rawSetting.title,
@@ -135,13 +125,13 @@ async function loadGameData() {
       window.activeStatusEffects = [];
     });
 
-    console.log("Shop & Settings data loaded succesfully");
+    console.log("Shop & Settings data loaded successfully");
   } catch (error) {
     console.error("Error loading game data", error);
   }
 }
 
-function devModeTools(event) {
+export function devModeTools(event) {
   if (event.key == "p") {
     changeScore("add", 100);
   } else if (event.key === "o" || event.key === "O") {
@@ -155,16 +145,20 @@ function devModeTools(event) {
       image: "assets/img/item/test.png",
       description: "tem um macaco na minha tela<br><span>+macaco na tela</span>",
       duration: 10000,
-      onStart: (player, item) => {
+      onStart: () => {
         console.log("oi");
       },
-      onEnd: (player, item) => {
+      onEnd: () => {
         console.log("macaco sumiu");
       },
     },
   true);
   } else if (event.key === "i" || event.key === "I") {
     devModeSetScore();
+  }
+
+  if (!player.extras.hasUsedDevMode) {
+    player.extras.hasUsedDevMode = true;
   }
 }
 
@@ -176,10 +170,6 @@ export function toggleDevMode() {
   } else {
     info.classList.add('hide');
     document.body.removeEventListener('keypress', devModeTools)
-  }
-
-  if (!player.extras.hasUsedDevMode) {
-    player.extras.hasUsedDevMode = true;
   }
 }
 
@@ -209,16 +199,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadGameData();
+document.addEventListener('DOMContentLoaded', () => {
+  loadGameData();
   loadPlayerData();
   applyPlayerData();
   unlockGuiButtons();
-  setTimeout(() => { changeScore('add', 0)}, 50);
+  setTimeout(() => { changeScore('add', 0)}, 0);
   devModeInfo()
 });
 
 export function isMobile() {
   return window.matchMedia("(max-width: 450px)").matches // true se for mobile
+}
+
+export function sample(arr) {
+  return arr[Math.floor(Math.random() * arr.length)]; // retorna elemento aleatório (amostra) do iterável
 }
 

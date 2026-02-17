@@ -15,7 +15,7 @@
 </head>
 <body class="dark-mode-affected">
     <h2 id="score-display">0 brabas</h2>
-    <h5 id="score-ps-display">
+    <h5 id="score-ps-display" class="hide">
         <p id="score-ps"></p>
         <p id="microfone-ps"><span></span><img src="assets/img/item/gravador.png"></p>
         <p id="cadeira-ps"><span></span><img src="assets/img/item/cadeira.png"></p>
@@ -32,6 +32,7 @@
     <div class="shop-main-gui hide dark-mode-affected"><p class="gui-title">Loja</p></div>
     <div class="settings-main-gui hide dark-mode-affected"><p class="gui-title">Configurações</p></div>
     <div class="backdrop-closeable hide"></div>
+    <div id="button-skin-select" class="hide"></div>
 
     <p id="dev-mode-info" class="dark-mode-affected">--Modo Dev ativo--<br>
         <div id="dev-mode-details" class="hide">
@@ -45,6 +46,15 @@
             </div>
         </div>
     </p>
+
+    <div id="dev-mode-panel" class="hide">
+        <div id="title">
+            <p>Dev Mode</p>
+            <sub>Clique em um botão para executar</sub>
+        </div>
+        <button id="close-button">×</button>
+        <div id="content"></div>
+    </div>
 
     <div id="set-score" class="hide">
         <p>Digite um número para definir</p>
@@ -74,6 +84,16 @@
 
     <div id="changelog" class="hide">
         <h1>Changelog</h1>
+        <div class="changelog-article">
+            <h2>Indev 0.0.7 16.2.26</h2>
+            <p>Como eu odeio celulares!</p>
+            <ul>
+                <li>Agora há um jeito fácil de acessar devMode no mobile: basta clicar no texto acima do display de pontuação quando o mesmo estiver ativo.</li>
+                <li>Dicas podem aleatoriamente aparecer durante sua jogatina. Quem sabe elas não te ensinem algo de útil?</li>
+                <li>Mais feedback aos processos internos (salvar, carregar) está sendo adicionado</li>
+                <li>Desenvolvimento talvez desacelere significativamente devido a fatores fora do meu controle.</li>
+            </ul>
+        </div>
         <div class="changelog-article">
             <h2>Indev 0.0.6 hotfix 18.1.26</h2>
             <p>Responsividade update</p>

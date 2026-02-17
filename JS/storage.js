@@ -1,5 +1,5 @@
 import { player, defaultPlayer } from "./player.js";
-import { shopItems, settings, devModeInfo } from "./elements.js";
+import { shopItems, settings, devModeInfo, broadcast } from "./elements.js";
 import { changeScore, abbreviateNumber } from "./currency.js";
 import { effects, settingEffects } from "./data.js";
 
@@ -7,16 +7,37 @@ export function savePlayerData() {
   if (player) {
     const savedPlayer = JSON.stringify(player);
     window.localStorage.setItem("playerData", savedPlayer);
+    broadcast({
+      text: "Salvando...",
+      duration: 0.75,
+      color: "gray",
+      position: "topLeft",
+      size: 25
+    })
   }
 }
 export function loadPlayerData() {
   const rawRetrievedData = localStorage.getItem("playerData");
   if (!rawRetrievedData) {
     console.log("No player found, loading new player");
+    broadcast({
+      text: "Preparando jogador novo...",
+      duration: 0.8,
+      color: "gray",
+      position: "topLeft",
+      size: 20
+    })
     return;
   }
   const playerData = JSON.parse(rawRetrievedData);
   Object.assign(player, playerData);
+  broadcast({
+      text: "Jogador carregado com sucesso",
+      duration: 0.8,
+      color: "gray",
+      position: "topLeft",
+      size: 20
+    })
 }
 
 export function applyPlayerData() {
@@ -92,6 +113,6 @@ export function resetPlayerData() {
   Object.assign(player, defaultPlayer);
   changeScore("add", 0);
   setTimeout(() => {
-    location.reload(); // cúmulo da preqguiça...
+    location.reload(); // cúmulo da preguiça...
   }, 500);
 }

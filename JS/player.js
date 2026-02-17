@@ -5,10 +5,12 @@ export let player = {
   scorePerSecond: 0,
   settings: {
     abbreviateNumbers: true,
-    devMode: false
+    devMode: false,
+    showTips: true
   },
   items: {},
   bonuses: {},
+  unlocks: {},
   extras: {
     hasUsedDevMode: false
   },
@@ -22,12 +24,18 @@ export let defaultPlayer = {
   scorePerSecond: 0,
   settings: {
     abbreviateNumbers: true,
-    devMode: false
+    devMode: false,
+    showTips: true
   },
   items: {},
   bonuses: {},
   extras: {
     hasUsedDevMode: false
+  },
+  unlocks: {
+    buttons: {
+
+    }
   },
   aura: 0
 }

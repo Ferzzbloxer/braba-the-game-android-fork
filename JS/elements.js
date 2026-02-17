@@ -1,6 +1,6 @@
 import { abbreviateNumber, addScoreObserver, buyItem, changeScore, formatTime } from './currency.js';
 import { effects, itemTooltipInfo, scoreObservers, settingEffects } from './data.js';
-import { isMobile } from './main.js';
+import { devModeTools, isMobile, sample } from './main.js';
 import { hide, log, player } from "./player.js";
 import { resetPlayerData } from './storage.js';
 
@@ -65,12 +65,52 @@ export function createScorePopup(value, type) {
 }
 
 export function devModeInfo() {
-  const button = document.getElementById('dev-mode-info');
-  const info = document.getElementById('dev-mode-details');
-  const closeButton = document.querySelector('#dev-mode-details > #close-button');
+  if (isMobile()) {
+    const dock = document.querySelector('#dev-mode-panel');
+    const button = document.querySelector('#dev-mode-info');
+    const closeButton = document.querySelector('#dev-mode-panel > #close-button');
 
-  closeButton.addEventListener('click', () => info.classList.add('hide'))
-  button.addEventListener('click', () => {info.classList.remove('hide'); log(info)})
+    const toggleVisibility = function() {
+      toggleWithAnimation(dock, 'shopGuiOpen', '1.5s');
+    }
+
+    closeButton.addEventListener('click', toggleVisibility);
+    button.addEventListener('click', toggleVisibility);
+    
+  } else {
+    const button = document.getElementById("dev-mode-info");
+    const info = document.getElementById("dev-mode-details");
+    const closeButton = document.querySelector(
+      "#dev-mode-details > #close-button",
+    );
+
+    closeButton.addEventListener("click", () => info.classList.add("hide"));
+    button.addEventListener("click", () => {
+      info.classList.remove("hide");
+    });
+  }
+}
+
+function addAllDevPanelCommands() {
+  addDevPanelCommand('+100 Brabas', () => {devModeTools({key: "p"})});
+  addDevPanelCommand('+1 BpS', () => {devModeTools({key: "o"})});
+  addDevPanelCommand('Resetar Brabas', () => {devModeTools({key: "l"})});
+  addDevPanelCommand('Testar Status Effect', () => {devModeTools({key: "["})});
+  addDevPanelCommand('Definir Brabas', () => {devModeTools({key: "i"})});
+  addDevPanelCommand('<i>Em breve...</i>', () => {console.log('foo')});
+}
+addAllDevPanelCommands();
+
+function addDevPanelCommand(name, callback) {
+  const dock = document.querySelector('#dev-mode-panel > #content');
+
+  const newButton = document.createElement('button');
+  dock.appendChild(newButton);
+  newButton.classList.add('dev-panel-button');
+  
+  if (name) newButton.innerHTML = name;
+
+  newButton.addEventListener('click', callback);
 }
 
 const unlockableButtons = [
@@ -85,6 +125,34 @@ export function unlockGuiButtons() {
       object.element.style.animation = "guiButtonPopup 1s ease-out forwards";
     }
   })
+}
+/**
+ * Helper function that applies animation and hide-show logic depending on the element's state, using a predefined CSS animation.
+ * @param {node} element - Element to apply
+ * @param {string} animation - CSS Animation
+ * @param {string} duration - Animation duration
+ */
+export function toggleWithAnimation(element, animation, duration = '1s') {
+  if (element.dataset.animating === 'true') return;
+
+  const isHidden = element.classList.contains('hide');
+  element.dataset.animating = 'true';
+
+  if (isHidden) {
+    element.classList.remove('hide');
+    forceReflow(element);
+    element.style.animation = `${animation} ${duration} ease forwards`;
+    element.addEventListener('animationend', () => {
+      element.dataset.animating = 'false';
+    }, { once: true });
+  } else {
+    forceReflow(element);
+    element.style.animation = `${animation} ${duration} ease reverse`;
+    element.addEventListener('animationend', () => {
+      element.classList.add('hide');
+      element.dataset.animating = 'false';
+    }, { once: true });
+  }
 }
 
 function forceReflow(element) {
@@ -151,6 +219,7 @@ unlockableButtons[0].element.addEventListener('click', () => {
 })
 
 export function closeAllGUIs() {
+  backdropToClose.classList.add('hide');
   if (isShopOpen) {
     unlockableButtons[0].element.click();
   }
@@ -161,6 +230,12 @@ export function closeAllGUIs() {
   // changelog too
   if (isChangelogOpen) {
     changelogButton.click()
+  }
+
+  // skin menu as well
+  const selectMenu = document.getElementById('button-skin-select');
+  if (!selectMenu.classList.contains('hide')) {
+    selectMenu.classList.add('hide');
   }
 }
 const backdropToClose = document.querySelector('.backdrop-closeable');
@@ -253,9 +328,24 @@ export function appendShopItem(item) {
   )
 };
 
+const tips = ["Já tentou usar o tijolo e a borracha no mesmo clique?", "Itens novos surgem quando sua quantidade de brabas atinge um certo ponto", "Você pode clicar no botão e apertar Espaço para clicar", "É possível saber se modo Dev foi usado ou não", "Inspiração possui a menor curva de preço", "Cadeira e Carteira formam uma ótima sinergia", "O bônus do microfone desaparece após exatamente 1.5s", "Esse jogo foi criado apenas com JS base!", "Esse jogo ainda está em desenvolvimento!", "Você pode clicar com o botão direito no botão para algo surpreendente", "Paciência muitas vezes é a chave", "O Tijolo é capaz de multiplicar o bônus da Borracha também"]
+function showRandomTip() {
+  if (player.settings?.showTips && Math.random() < 0.2) {
+    broadcast({
+      text: sample(tips),
+      color: "gray",
+      duration: 5,
+      position: "bottom",
+      size: 20
+    })
+  }
+}
+
+setInterval(showRandomTip, 30000);
+
 function revealItemsWithMinScore() {
   shopItems.forEach(item => {
-    if (player.score >= item.minScore && item.element.classList.contains('hide')) {
+    if ((player.score >= item.minScore && item.element.classList.contains('hide'))) {
       item.element.classList.remove('hide');
     }
   })
@@ -584,3 +674,106 @@ setTimeout(() => {
   addScoreObserver(updateBuyButtonColor);
   addScoreObserver(unlockGuiButtons);
 }, 1);
+
+// sistema rudimentar de broadcast
+
+export function broadcast(message) {
+  const broadcast = document.createElement('span');
+  document.body.appendChild(broadcast)
+
+  const text = message.text ?? ["Uma brisa leve bate lá fora.", "Parece que não há algo aqui.", "Apesar de tudo, você esqueceu dessa linha.", "Você esqueceu de definir o texto.", "Apesar de tudo, ainda é você.", "Undefined...", "Tudo o que você precisava fazer.", "Os lugares para estar."][Math.floor(Math.random() * 8)]; // saborzinho. não serve pra nada de mais, mas eu gosto de placeholders bonitinhos
+  const color = message.color ?? "#000000";
+  const size = message.size ?? 10
+  const duration = message.duration ?? 1;
+  const position = message.position ?? "default";
+
+  broadcast.innerText = text;
+  broadcast.classList.add('broadcast');
+
+  broadcast.style.color = color;
+
+  broadcast.style.fontSize = `${size}px`;
+
+  broadcast.style.animation = `fadeOut ${duration}s ease-out forwards`;
+  broadcast.addEventListener('animationend', () => broadcast.remove());
+
+  function resolvePosition(pos) {
+    if (!isMobile()) return pos;
+
+    const mobileFallbacks = {
+      leftOfButton: 'bottom',
+      topRight: 'top',
+      topLeft: 'top'
+    }
+    
+    return mobileFallbacks[pos] ?? pos;
+  }
+
+  switch (resolvePosition(position)) {
+    case "top":
+      broadcast.style.position = "fixed";
+      broadcast.style.top = "90px";
+    break;
+
+    case "leftOfButton":
+      broadcast.style.position = "fixed";
+      broadcast.style.right = "calc(50% + (var(--scale-override) * 55px))";
+      broadcast.style.textAlign = "right";
+    break;
+    
+    case "bottom":
+      broadcast.style.position = "fixed";
+      broadcast.style.bottom = "100px";
+    break;
+
+    case "topLeft":
+      broadcast.style.position = "fixed";
+      broadcast.style.top = "0"
+      broadcast.style.left = "0"
+
+      broadcast.style.maxWidth = "40%"
+      broadcast.style.textAlign = "left"
+
+      broadcast.style.margin = "5px"
+    break;
+
+    case "topRight": 
+    broadcast.style.position = "fixed";
+      broadcast.style.top = "0"
+      broadcast.style.right = "0"
+
+      broadcast.style.maxWidth = "40%"
+      broadcast.style.textAlign = "right"
+
+      broadcast.style.margin = "5px"
+  }
+}
+
+
+// troca de aparência dos botões
+const button = document.getElementById('main-button');
+
+function onButtonRightClick(event) {
+  event.preventDefault();
+
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
+  if (!player.unlocks.buttons) player.unlocks.buttons = {};
+  const ownedSkins = player.unlocks.buttons;
+
+
+  const selectMenu = document.getElementById('button-skin-select');
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+
+  selectMenu.style.position = 'absolute';
+  selectMenu.style.left = `${mouseX + 10}px`;
+  selectMenu.style.top = `${mouseY + 10}px`;
+
+  selectMenu.classList.remove('hide');
+  backdropToClose.classList.remove('hide');
+}
+
+button.addEventListener('contextmenu', onButtonRightClick);
