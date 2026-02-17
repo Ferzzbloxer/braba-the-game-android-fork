@@ -3,6 +3,10 @@ import { appendSetting, appendShopItem, createScorePopup, createSetting, createS
 import { changeScore, addScoreObserver, addStatusEffect, abbreviateNumber, removeStatusEffect, hasStatusEffect } from './currency.js';
 import { applyPlayerData, loadPlayerData, savePlayerData } from './storage.js';
 
+import {SHOP_ITEMS} from "./data/shop-items.js";
+import {BUTTON_SKINS} from "./data/button-skins.js"; // still unused
+import {SETTINGS} from "./data/settings.js";
+
 window.addEventListener('beforeunload', () => {
   savePlayerData();
 })
@@ -80,23 +84,9 @@ button.addEventListener('keypress', () => {
   }
 })
 
-async function loadGameData() {
+function loadGameData() {
   try {
-    const [itemsResponse, settingsResponse] = await Promise.all([
-      fetch("JS/JSON/shop-items.json"),
-      fetch("JS/JSON/settings.json")
-    ]);
-
-    if (!itemsResponse.ok || !settingsResponse.ok) {
-      throw new Error(`Error loading JSON files (${itemsResponse.status}, ${settingsResponse.status})`);
-    }
-
-    const [rawItems, rawSettings] = await Promise.all([
-      itemsResponse.json(),
-      settingsResponse.json()
-    ]);
-
-    rawItems.forEach(rawItem => {
+    SHOP_ITEMS.forEach(rawItem => {
       const processedItem = createShopItem(
         rawItem.id,
         rawItem.name,
@@ -111,7 +101,7 @@ async function loadGameData() {
       appendShopItem(processedItem);
     });
 
-    rawSettings.forEach(rawSetting => {
+    SETTINGS.forEach(rawSetting => {
       const processedSetting = createSetting(
         rawSetting.name,
         rawSetting.title,
@@ -135,7 +125,7 @@ async function loadGameData() {
       window.activeStatusEffects = [];
     });
 
-    console.log("Shop & Settings data loaded succesfully");
+    console.log("Shop & Settings data loaded successfully");
   } catch (error) {
     console.error("Error loading game data", error);
   }
@@ -209,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadGameData();
+document.addEventListener('DOMContentLoaded', () => {
+  loadGameData();
   loadPlayerData();
   applyPlayerData();
   unlockGuiButtons();
