@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0 brabas - Braba the Game</title>
+    <link rel="shortcut icon" href="assets/img/cursor_icon.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/animations.css">
+    
+    <script src="JS/main.js" type="module"></script>
+    <script src="JS/currency.js" type="module"></script>
+    <script src="JS/elements.js" type="module"></script>
+</head>
+<body class="dark-mode-affected">
+    <h2 id="score-display">0 brabas</h2>
+    <h5 id="score-ps-display" class="hide">
+        <p id="score-ps"></p>
+        <p id="microfone-ps"><span></span><img src="assets/img/item/gravador.png"></p>
+        <p id="cadeira-ps"><span></span><img src="assets/img/item/cadeira.png"></p>
+        por segundo
+    </h5>
+    <div class="main-button-wrapper">
+        <button id="main-button" tabindex="-1">braba</button>
+    </div>
+    <div id="progress-bars-wrapper"></div>
+    <div id="status-effects"></div>
+    <div class="popup-wrapper"></div>
+    <button id="shop-button" class="hide"><img src="assets/img/shopping-icon.png" alt="Shop" width="40px" height="40px" ></button>
+    <button id="settings-button" class="hide"><img src="assets/img/settings-icon.png" alt="Settings" width="40px" height="40px" ></button>
+    <div class="shop-main-gui hide dark-mode-affected"><p class="gui-title">Loja</p></div>
+    <div class="settings-main-gui hide dark-mode-affected"><p class="gui-title">Configurações</p></div>
+    <div class="backdrop-closeable hide"></div>
+    <div id="button-skin-select" class="hide"></div>
+
+    <p id="dev-mode-info" class="dark-mode-affected">--Modo Dev ativo--<br>
+        <div id="dev-mode-details" class="hide">
+            <button id="close-button">×</button>
+            <div id="dev-mode-details-wrapper">
+                <p><b>P</b>: +100 brabas</p>
+                <p><b>O</b>: +1 BpS</p>
+                <p><b>L</b>: Redefinir brabas</p>
+                <p><b>[</b>: Testar Efeito</p>
+                <p><b>I</b>: Definir Brabas</p>
+            </div>
+        </div>
+    </p>
+
+    <div id="dev-mode-panel" class="hide">
+        <div id="title">
+            <p>Dev Mode</p>
+            <sub>Clique em um botão para executar</sub>
+        </div>
+        <button id="close-button">×</button>
+        <div id="content"></div>
+    </div>
+
+    <div id="set-score" class="hide">
+        <p>Digite um número para definir</p>
+        <input type="number">
+        <div>
+            <button id="set-score-confirm">Confirmar</button>
+            <button id="set-score-cancel">Cancelar</button>
+        </div>
+    </div>
+
+    <button id="changelog-button">
+        <img src="assets/img/information.png" width="30px">
+    </button>
+
+    <div id="confirm-data-delete-wrapper" class="hide">
+        <div id="blur-screen"></div>
+        <div id="confirm-data-delete">
+            <h1>Apagar todos os dados</h1>
+            <p>Você está prestes a excluir todo o progresso feito até agora. Após excluir, não existe maneira de voltar atrás. </p>
+            <span>Tem certeza de que deseja excluir seus dados?</span>
+            <div id="confirm-buttons-wrapper">
+                <button id="delete-no">Cancelar</button>
+                <button id="delete-yes">Apagar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="changelog" class="hide">
+        <h1>Changelog</h1>
+        <div class="changelog-article">
+            <h2>Indev 0.0.7 16.2.26</h2>
+            <p>Como eu odeio celulares!</p>
+            <ul>
+                <li>Agora há um jeito fácil de acessar devMode no mobile: basta clicar no texto acima do display de pontuação quando o mesmo estiver ativo.</li>
+                <li>Dicas podem aleatoriamente aparecer durante sua jogatina. Quem sabe elas não te ensinem algo de útil?</li>
+                <li>Mais feedback aos processos internos (salvar, carregar) está sendo adicionado</li>
+                <li>Desenvolvimento talvez desacelere significativamente devido a fatores fora do meu controle.</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.6 hotfix 18.1.26</h2>
+            <p>Responsividade update</p>
+            <ul>
+                <li>É possível jogar em dispositivos móveis sem quebrar tudo agora</li>
+                <li>Arrumado bug com fechamento do changelog</li>
+                <li>Arrumado bug com tela de apagamento de dados</li>
+                <li>Arrumado bug com posicionamento incorreto das barras de progresso</li>
+                <li>Arrumado bug com acúmulo de tijolos</li>
+                <li>Arrumado algumas inconsistências em informações de itens </li>
+                <li>Arrumado display de BpS desaparecendo após bater zero</li>
+                <li>Os preços de alguns itens foram reajustados</li>
+                <li>Arrumado bug com informação do devMode</li>
+                <li>Ainda não há um jeito fácil de acessar os poderes do devMode no mobile, mas isso virá em breve</li>
+                <li>Além disso, o layout é bem rudimentar, feito apenas para ser jogável</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.6 hotfix 4</h2>
+            <p>QoL update parte 2.5</p>
+            <ul>
+                <li>Item Cadeira foi rebalanceado</li>
+                <li>O preço e curva de preço de <b>todos</b> os itens foram reajustados</li>
+            </ul>
+        </div>
+
+        <div class="changelog-article">
+            <h2>Indev 0.0.6 hotfix 3</h2>
+            <p>QoL update parte 2</p>
+            <ul>
+                <li>Novo item: Cadeira</li>
+                <li>Arrumado bug com cálculo incorreto de BpS</li>
+                <li>Arrumado bug com cadeiras repetidas</li>
+                <li>Arrumado bug com tempo negativo do pré-treino</li>
+                <li>Os preços e efeitos de alguns itens foram rebalanceados:
+                    <ul>
+                        <li>Microfone -> BpS por clique aumenta com o nível, curva de preço aumentada</li>
+                        <li>Inspiração -> +1 BpS por nível, curva de preço abaixada</li>
+                        <li>Borracha -> +50 no preço inicial</li>
+                    </ul>
+                </li>
+                <li>Arrumado bug que fazia o jogo explodir quando BpS era muito alto</li>
+                <li>Próximo update será o final desses</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.6 hotfix 2.1</h2>
+            <p>QoL update parte 1.1</p>
+            <ul>
+                <li>Ao pedido de um amigo, feito o push antes da hora (ele vai matar aula pra jogar esse jogo) para arrumar um bug com NaNs aparecendo nas tooltips dos itens da loja</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.6 hotfix 2</h2>
+            <p>QoL update parte 1</p>
+            <ul>
+                <li>Ao clicar fora de uma janela, feche-a. Não é necessário mais clicar no botão novamente</li>
+                <li>Adicionado uma config nova</li>
+                <li>Arrumado bug com popup da carteira</li>
+                <li>Arrumado cálculo incorreto de crítico com tijolo</li>
+                <li>Arrumada barras de progresso não aparecendo ao iniciar um novo save</li>
+                <li>Novo: Foi adicinada, ao passar o mouse sobre a imagem de um item, informações que podem ser úteis.</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.6 hotfix 0.1</h2>
+            <p>Update do QUE MERDA É ESSA?</p>
+            <ul>
+                <li>Removido Procópio</li>
+                <li>Removido Rotação por 3 graus</li>
+                <li>Invadiram meu site. Galera, nunca, nunca, desenvolvam projetos pessoais em lugares públicos.</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.6</h2>
+            <p>Update da Visibilililbilidade</p>
+            <ul>
+                <li>2 novos itens (em beta)</li>
+                <li>Arrumado bug de borracha precisar de 11 clicks para ativar</li>
+                <li>Arrumado bug de tijolo não aparecer ao iniciar uma nova sessão</li>
+                <li>Nova feature: Barras de Progresso!</li>
+                <li>Quando há um item que registra mudanças (cliques, score ganho), aparecerá uma barra de progresso ao lado do botão!</li>
+                <li>Não estão em suas versões finais, mas é isso aí</li>
+                <li>Item 'Carteira' ainda não tem feedback visual, isso será arrumado no próximo update</li>
+                <li>NÃO inicie uma nova sessão enquanto estiver com algum efeito 'Absorvendo'; ele não terminará seu efeito e você terá jogado brabas fora. Isso será arrumado no próximo update</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.5-hotfix.4</h2>
+            <p>"EU TENHO MEDO DE UPDATES GRANDES" update</p>
+            <ul>
+                <li>Novo item: Tijolo!!</li>
+                <li>Tijolo, ao ficar sem clicar, dá um bônus</li>
+                <li>Atualizada interface de Dev Mode</li>
+                <li>Para sugerir mais features do Dev Mode, mande uma mensagem para @pdk__ no discord</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.5-hotfix.3</h2>
+            <p>Quando chega algo de útil??</p>
+            <ul>
+                <li>Ajustados efeitos de alguns itens</li>
+                <li>Arrumado bug com efeitos da borracha</li>
+                <li>Ajustados preços de alguns itens</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.5-hotfix.2</h2>
+            <p>Salvar, Carregar, O quê!? Novo item?</p>
+            <ul>
+                <li>Novo item: Borracha</li>
+                <li>(tá, talvez não seja tão novo assim)</li>
+                <li>O item Borracha foi editado para combinar com a nova fórumla de itens</li>
+                <li>A cada 10 cliques, ganhe (2 * nível de borracha) brabas a mais!</li>
+                <li>Arrumado bug que aplicava os efeitos do item de novo ao recarregar a página</li>
+                <li>Eu vou parar de planejar updates, eu nunca consigo fazer o que eu quero</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.5-hotfix.1</h2>
+            <p>Salvar, Carregar, CONFIGURAR</p>
+            <ul>
+                <li>Configs agora são propriamente carregadas entre sessões</li>
+                <li>Nunca mais queime seus olhos com o modo claro</li>
+                <li>Alguns logs desnecessários foram removidos do console</li>
+                <li>Efeitos temporários não são salvos entre sessões mais</li>
+                <li>Planos para o próximo update: finalmente adicionar SFX, arrumar algumas incosistências, reescrever alguns códigos-base</li>
+                <li>Mais configurações virão mais pra frente</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.5</h2>
+            <p>Salvar, Carregar, Repetir</p>
+            <ul>
+                <li>Não perca delicioso progresso ao recarregar a página</li>
+                <li>Nova configuração: Apagar Dados</li>
+                <li>Configurações ainda não são salvas</li>
+                <li>Bug conhecido: Recarregar a página enquanto tem um efeito ativo vai duplicar as estatísticas de tal efeito</li>
+                <li>Planos para o próximo update: carregamento de configs, resolver alguns bugs e começar a adicionar itens</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.4</h2>
+            <p>ITENS INFINITOS!!</p>
+            <ul>
+                <li>Agora, itens podem ser comprados quantas vezes seu coraçãozinho desejar</li>
+                <li>Toda vez que um item é comprado, seu preço aumenta de acordo com sua raridade</li>
+                <li>Resolvido alguns problemas no carregamento de configurações</li>
+                <li>Todas as configurações agora têm seu devido efeito (exceto Brabas SFX)</li>
+                <li>Os itens serão balanceados em breve para acatar suas mudanças</li>
+                <li>Algumas animações foram adicionadas na compra de itens</li>
+                <li>Texto NOVO! dinâmico ao lado da versão mais recente do Changelog</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.3</h2>
+            <p>Prosseguir com o sistema de configs</p>
+            <ul>
+                <li>Botões importantes agora brilham verde quando clicados</li>
+                <li>Algumas das configs já estão funcionando</li>
+                <li>Planos para adição de itens infinitamente compráveis, provavelmente <br>acompanhado de uma reescrita total deles</li>
+                <li>Dev Mode agora é uma configuração separada</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.2</h2>
+            <p>Introduzido sistema de configurações</p>
+            <ul>
+                <li>Desbloqueada com 10 B$</li>
+                <li>Permite mudar vários aspectos do jogo</li>
+                <li>Definitivamente não está pronta, mas pode ser adicionado dinamicamente</li>
+                <li>Ajustes em preços de itens</li>
+            </ul>
+        </div>
+        <div class="changelog-article">
+            <h2>Indev 0.0.1</h2>
+            <p>Criação do Changelog</p>
+            <ul>
+                <li>Poderá ser escondido no futuro</li>
+                <li>Registra todas as mudanças significativas</li>
+                <li>Não considere coisas antes dessa versão</li>
+            </ul>
+        </div>
+        <a href="https://github.com/dan-pdk/braba-the-game" target="_blank">Repositório do Github</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+@keyframes animateScorePopup {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+}
+
+@keyframes guiButtonPopup {
+    0% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes shopGuiOpen {
+    0% {
+        transform: translateY(calc(100vh + 90px));
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes settingsGuiOpen {
+    0% {
+        transform: translateX(-700px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes shrinkAndDissapear {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes moveUpAndDown {
+    0% {
+        transform: translateY(0px);
+        background-color: hsl(98, 100%, 59%);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: none;
+}
+
+.dark-mode {
+    background-color: rgb(32, 32, 32) !important;
+    color: white !important;
+}
+
+.dark-mode .item-description span {
+    color: aqua;
+}
+
+.dark-mode .item-description marker {
+    color: greenyellow;
+}
+
+.hide {
+    display: none !important;
+}
+
+.item-bought-animation {
+    animation: moveUpAndDown 0.5s cubic-bezier(0.08, 1.12, 0.23, 0.97);
+}
+
+.score-popup {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    user-select: none;
+
+    font-size: larger;
+
+    animation: animateScorePopup 1.067s forwards ease-in-out;
+
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+}
+
+.score-popup .popup-icon {
+    width: 20px;
+}
+
+.carteira-popup {
+    position: absolute;
+    right: 0;
+    top: 10px;
+
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: hsl(120, 100%, 42%);
+
+    animation: animateScorePopup 2.2s forwards ease-out;
+
+    pointer-events: none;
+
+    text-shadow: 0 0 5px #61f533, 0 0 10px #61f533;
+}
+
+/* misc */
+
+.red {
+    color: red;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.green {
+    color: lime;
+}
