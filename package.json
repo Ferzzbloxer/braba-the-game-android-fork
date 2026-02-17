@@ -1,0 +1,22 @@
+{
+  "name": "braba-the-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-data": "node build-data.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dan-pdk/braba-the-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/dan-pdk/braba-the-game/issues"
+  },
+  "homepage": "https://github.com/dan-pdk/braba-the-game#readme"
+}
