@@ -125,21 +125,23 @@ body {
   border: none;
 }
 
-#dev-mode-details > #close-button, #dev-mode-panel > #close-button {
+#dev-mode-details > #close-button, #dev-mode-panel > #close-button, .shop-main-gui #close-button, .settings-main-gui #close-button{
+  width: fit-content;
+  padding: 5px;
+
   background: none;
   border: none;
 
-  font-size: 25px;
+  font-size: 30px;
 
   cursor: pointer;
   
   position: absolute;
   right: 8px;
   top: 0;
-}
 
-#dev-mode-details > #close-button:hover, #dev-mode-panel > #close-button:hover {
-  color: white;
+  font-weight: bold;
+  color: black;
 }
 
 .main-button-wrapper {
@@ -1095,6 +1097,15 @@ body {
     min-height: 90% !important;
   }
 
+  .shop-main-gui #close-button, .settings-main-gui #close-button {
+    position: sticky;
+
+    align-self: flex-end;
+    z-index: 99999999999;
+  }
+
+  
+
   .item {
     min-height: fit-content;
     display: flex;
@@ -1124,9 +1135,11 @@ body {
 
   /* settings */
   .settings-main-gui {
-    width: 90%;
+    width: 100%;
     position: absolute;
     
+    left: 0;
+    bottom: 0;
   }
 
   .setting-div {

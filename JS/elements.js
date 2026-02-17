@@ -161,7 +161,8 @@ function forceReflow(element) {
 }
 
 let isSettingsOpen = false;
-unlockableButtons[1].element.addEventListener('click', () => {
+
+export function toggleSettings() {
   const settingsGui = document.querySelector('.settings-main-gui');
   const button = unlockableButtons[1].element;
 
@@ -187,10 +188,13 @@ unlockableButtons[1].element.addEventListener('click', () => {
     isSettingsOpen = true;
     backdropToClose.classList.remove('hide');
   }
-});
+}
+
+document.querySelector('.settings-main-gui > #close-button').addEventListener('click', toggleSettings);
+unlockableButtons[1].element.addEventListener('click', toggleSettings);
 
 let isShopOpen = false;
-unlockableButtons[0].element.addEventListener('click', () => {
+export function toggleShop() {
   const shopGui = document.querySelector('.shop-main-gui')
   const button = unlockableButtons[0].element;
 
@@ -216,7 +220,10 @@ unlockableButtons[0].element.addEventListener('click', () => {
     shopGui.classList.toggle('hide');
     backdropToClose.classList.remove('hide');
   }
-})
+}
+
+unlockableButtons[0].element.addEventListener('click', toggleShop)
+document.querySelector('.shop-main-gui > #close-button').addEventListener('click', toggleShop)
 
 export function closeAllGUIs() {
   backdropToClose.classList.add('hide');
