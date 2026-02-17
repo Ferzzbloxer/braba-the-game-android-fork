@@ -1,0 +1,240 @@
+[33mcommit 459e6c5698398e3107e89c4fc5d6f12532d470e4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;33mtag: [m[1;33mV1.0.1-Test-Release[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Ferzzbloxer <ferzzblox@gmail.com>
+Date:   Mon Feb 16 09:17:15 2026 -0300
+
+    Update README.md
+
+[33mcommit 5efb5dc8bf92a7512fb6ae1ae3d8d862f3a28d4c[m
+Author: Ferzzbloxer <ferzzblox@gmail.com>
+Date:   Sat Feb 14 21:55:58 2026 -0300
+
+    Update README with original repo link
+
+[33mcommit e599c5fd6b6c69643f94c5e78d39d465b8a65fba[m
+Author: Ferzzbloxer <ferzzblox@gmail.com>
+Date:   Sat Feb 14 21:55:29 2026 -0300
+
+    Add README with project fork information
+
+[33mcommit f37a5b140f9a1fc7231b1338d58058bd5ab02cb3[m
+Author: Ferzzbloxer <ferzzblox@gmail.com>
+Date:   Sat Feb 14 21:52:42 2026 -0300
+
+    Remove notes.txt from .gitignore
+
+[33mcommit 97a50b45fc0aaa2258e59ab8aa821e803b6e538f[m
+Author: Ferzzbloxer <ferzzblox@gmail.com>
+Date:   Sat Feb 14 21:46:21 2026 -0300
+
+    Delete notes.txt
+
+[33mcommit 16a997c5869dbffe62802e78ca5ced2664999677[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sun Jan 18 22:00:02 2026 -0300
+
+    Update changelog
+
+[33mcommit 7474276b2a2b612884bf489ed67621eb3d6b6428[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sun Jan 18 21:48:34 2026 -0300
+
+    Add responsivity
+
+[33mcommit 61660c3041f8f65a42c2cf15d78bc1ef285e420d[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sun Jan 18 18:07:26 2026 -0300
+
+    responsividade nas UIs basicas
+
+[33mcommit ef067fec3702e4f84ae71b134628c424b81166a5[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Jan 17 11:47:43 2026 -0300
+
+    tijolo redone
+
+[33mcommit 1fa626c0b62101f29c18744b6eacdfdf7dfea170[m
+Author: aluno <danielfteste20222@gmail.com>
+Date:   Wed Dec 3 11:41:59 2025 -0300
+
+    smegma updat
+
+[33mcommit 10757f9348f5eefe497621c1bb70737c3400f5eb[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sun Nov 23 21:59:36 2025 -0300
+
+    ah. como eu amo updates não prontos
+
+[33mcommit 0db38f8388b8ec50cb470b3431c9c41f9a63a35d[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sun Nov 23 11:47:32 2025 -0300
+
+    novo item
+
+[33mcommit e02785934c128ca4cf3595f9bf1de88630131f7c[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Fri Nov 21 23:35:47 2025 -0300
+
+    nova config? tamanho do botão
+
+[33mcommit 4c85051a359f41558541331d904dc95eea8ea786[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Thu Nov 20 13:27:52 2025 -0300
+
+    secret patch
+
+[33mcommit a97c3a4a274c7c8fa2f0f980a9fc4ad9ec5ee042[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Nov 18 22:22:23 2025 -0300
+
+    changelog atualizado
+
+[33mcommit 5c20dd1ec5740d4df981551f7f1b26e7444c0d27[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Nov 18 22:20:06 2025 -0300
+
+    push de emergência
+
+[33mcommit d30403cfae090748e4b703b6b7fe71f189a2aeba[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Nov 18 22:05:30 2025 -0300
+
+    indev
+
+[33mcommit 1b6050e36d63e4ed6c89d101ebf2e0de7be4a588[m
+Merge: b5ecacf 7fa0755
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Nov 18 22:02:47 2025 -0300
+
+    Merge branch 'main' of https://github.com/dan-pdk/braba-the-game
+
+[33mcommit b5ecacf6d1399f0c70fb49730daa8cb9d2147fca[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Nov 18 22:02:43 2025 -0300
+
+    indev 0.0.6-hotfix 2
+
+[33mcommit 7fa0755e41995f925d37332eb32d195d4ab6bcc3[m
+Author: aluno <danielfteste20222@gmail.com>
+Date:   Mon Nov 17 08:54:20 2025 -0300
+
+    indev 0.0.6 hotfix 0.1
+
+[33mcommit 3f9d9d7eacc1ae065daebae20a2895ce70a3d93a[m
+Author: aluno <danielfteste20222@gmail.com>
+Date:   Mon Nov 17 08:48:02 2025 -0300
+
+    Uhh update
+
+[33mcommit c9f0dee6dfeccf30dcf03ad1b56b24738ad5159c[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Mon Nov 10 18:37:36 2025 -0300
+
+    0.0.7 pre1. adicionado feedback visual da carteira & bugfixes
+
+[33mcommit 4c9922cc7b24f91047d41d98d9a0f002ff146f48[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Oct 28 19:25:01 2025 -0300
+
+    indev 0.0.6. obrigado chatgpt
+
+[33mcommit 811d71390043aa50c377a4cd8ff7f545d201c028[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Mon Oct 27 23:30:41 2025 -0300
+
+    novo item-pretreino
+
+[33mcommit c9307e4341b0da0fcc7cd56e64dabb984f1d12e9[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Mon Oct 27 14:46:18 2025 -0300
+
+    updated do v0.0.5-4
+
+[33mcommit 1de6e9d840434d3482312892b9e2ba31c46a35db[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Wed Oct 22 22:08:21 2025 -0300
+
+    atualizado changelog
+
+[33mcommit 09cbb8c21f7b5944d5c3ee1ea53971bb158afbf7[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Wed Oct 22 22:06:37 2025 -0300
+
+    macacos me mordam x1
+
+[33mcommit 18bbca9d4d30fcbf91f4789a85a57e52c4903e68[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Wed Oct 22 18:52:35 2025 -0300
+
+    atualizado interface devmode
+
+[33mcommit 1bcabafd13b7dcde0a37d2553fb9c4259f3415e4[m
+Author: aluno <danielfteste20222@gmail.com>
+Date:   Wed Oct 22 11:29:56 2025 -0300
+
+    hotfix 3
+
+[33mcommit 1b8207bc2347cdc524717652d1a235b8df09afb9[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Tue Oct 21 20:43:24 2025 -0300
+
+    atualizado gravador
+
+[33mcommit 5f51d367f423b5f7e95d1dfb57c807940c62cf60[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Oct 18 14:38:35 2025 -0300
+
+    preciso fazer commits mais frequentes
+
+[33mcommit 24538ad2a4c3d6cbca790dd243c99e9eb4315321[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Oct 18 14:35:42 2025 -0300
+
+    changelog atualizado
+
+[33mcommit 195e34fca6eb0ab019588f7c3a4ab175b0f5126e[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Oct 18 14:33:10 2025 -0300
+
+    novo item: borracha
+
+[33mcommit a775108af0eb24335ab36d599d96d17018b9f9cd[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Oct 18 09:03:15 2025 -0300
+
+    hey
+
+[33mcommit f3801f6991b11747e81c7370871746d879f0619d[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Oct 18 00:31:14 2025 -0300
+
+    cara, eu preciso dormir
+
+[33mcommit 1901101afd2ec159d3fe757ab7b5af4c332809cc[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Fri Oct 17 21:26:07 2025 -0300
+
+    atualizado changelog
+
+[33mcommit 64236ed470f85bf5eb43a64d3aa7f898e1e941de[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Fri Oct 17 21:22:13 2025 -0300
+
+    progresso
+
+[33mcommit 92914954b9b1acce0d4226ae17d9bd649a2e55b8[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Sat Oct 11 12:56:36 2025 -0300
+
+    criada nova config de resetar dados
+
+[33mcommit cd855295aeb653e618837b902d815c954db231a4[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Thu Oct 9 18:30:16 2025 -0300
+
+    testando
+
+[33mcommit 717a824db14663989ecafcd3ec71a40600de19d4[m
+Author: dan-pdk <danielfteste20222@gmail.com>
+Date:   Thu Oct 9 18:18:23 2025 -0300
+
+    Commit inicial após o desastre
